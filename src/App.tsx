@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useArticleList } from "./hooks/useArticleList";
 
 import "./App.css";
@@ -15,20 +15,34 @@ function App() {
     getArticleList();
   }, []);
 
+  const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
+    setArticleName(event.target.value);
+  };
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setArticleName(event.target.value);
+  };
+  const onChangeBody = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setArticleName(event.target.value);
+  };
+
   return (
     <div className="App">
       <h1>掲示板アプリ</h1>
       <div className="post-field">
         <span>投稿者名: </span>
-        <input type="text" value={articleName} />
+        <input type="text" value={articleName} onChange={onChangeName} />
         <div>
           <span>記事タイトル: </span>
-          <input type="text" value={title} />
+          <input type="text" value={title} onChange={onChangeTitle} />
         </div>
         <div>
-          <br />
           <span>投稿内容: </span>
-          <textarea cols={20} rows={5} value={body}></textarea>
+          <textarea
+            cols={30}
+            rows={5}
+            value={body}
+            onChange={onChangeBody}
+          ></textarea>
         </div>
         <button type="button">記事投稿</button>
       </div>
