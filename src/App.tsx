@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useArticleList } from "./hooks/useArticleList";
 
 import "./App.css";
+import { usePostArticle } from "./hooks/usePostArticle";
 
 function App() {
   const [articleName, setArticleName] = useState("");
@@ -10,6 +11,7 @@ function App() {
   const [body, setBody] = useState("");
 
   const { articleList, getArticleList } = useArticleList();
+  const { postArticle } = usePostArticle();
 
   useEffect(() => {
     getArticleList();
@@ -19,11 +21,13 @@ function App() {
     setArticleName(event.target.value);
   };
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setArticleName(event.target.value);
+    setTitle(event.target.value);
   };
   const onChangeBody = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setArticleName(event.target.value);
+    setBody(event.target.value);
   };
+
+  
 
   return (
     <div className="App">
@@ -44,7 +48,7 @@ function App() {
             onChange={onChangeBody}
           ></textarea>
         </div>
-        <button type="button">記事投稿</button>
+        <button type="button" onClick={() => postArticle(title, body)}>記事投稿</button>
       </div>
       <hr />
       {articleList.map((article) => (
