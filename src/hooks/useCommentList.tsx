@@ -2,7 +2,7 @@
 import { useCallback } from "react";
 import axios from "axios";
 
-export const usePostArticle = () => {
+export const useCommentList = () => {
   const postArticle = useCallback( async (title :string, body: string) => {
     try{
       const response = await axios.post("https://jsonplaceholder.typicode.com/posts",{
