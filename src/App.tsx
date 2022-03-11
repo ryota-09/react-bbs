@@ -4,6 +4,7 @@ import { useArticleList } from "./hooks/useArticleList";
 
 import "./App.css";
 import { usePostArticle } from "./hooks/usePostArticle";
+import { useCommentList } from "./hooks/useCommentList";
 
 function App() {
   const [articleName, setArticleName] = useState("");
@@ -12,9 +13,11 @@ function App() {
 
   const { articleList, getArticleList } = useArticleList();
   const { postArticle } = usePostArticle();
+  const { commentList, getCommentList } = useCommentList();
 
   useEffect(() => {
     getArticleList();
+    getCommentList();
   }, []);
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
