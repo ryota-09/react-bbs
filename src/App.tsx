@@ -4,7 +4,7 @@ import { useArticleList } from "./hooks/useArticleList";
 
 import "./App.css";
 import { usePostArticle } from "./hooks/usePostArticle";
-import { useCommentList } from "./hooks/useCommentList";
+import { CommentList } from "./components/CompCommentList";
 
 function App() {
   const [articleName, setArticleName] = useState("");
@@ -13,11 +13,9 @@ function App() {
 
   const { articleList, getArticleList } = useArticleList();
   const { postArticle } = usePostArticle();
-  const { commentList, getCommentList } = useCommentList();
 
   useEffect(() => {
     getArticleList();
-    getCommentList();
   }, []);
 
   const onChangeName = (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +54,11 @@ function App() {
       <hr />
       {articleList.map((article) => (
         <div key={article.id}>
-          <p>{article.title}</p>
+          <p>【Article】</p>
+          <p>Title: {article.title}</p>
           <p>{article.body}</p>
+          <p>===Comment===</p>
+          <CommentList articleId={article.id} />
           <hr />
         </div>
       ))}
